@@ -1,0 +1,38 @@
+{
+  "properties": [
+    {
+      "name": "app.security.tokenSecret",
+      "type": "java.lang.String",
+      "description": "Description for app.security.tokenSecret."
+    },
+    {
+      "name": "app.security.accessTokenExpirationMilliseconds",
+      "type": "java.lang.String",
+      "description": "Description for app.security.accessTokenExpirationMilliseconds."
+    },
+    {
+      "name": "app.security.refreshTokenExpirationMilliseconds",
+      "type": "java.lang.String",
+      "description": "Description for app.security.refreshTokenExpirationMilliseconds."
+    },
+    {
+      "name": "app.security.authorizedRedirectUris",
+      "type": "java.lang.String",
+      "description": "Description for app.security.authorizedRedirectUris."
+    },
+    {
+      "name": "app.email.address",
+      "type": "java.lang.String",
+      "description": "Description for app.email.address."
+    },
+    {
+      "name": "app.email.password",
+      "type": "java.lang.String",
+      "description": "Description for app.email.password."
+    },
+    {
+      "name": "app.email.from",
+      "type": "java.lang.String",
+      "description": "Description for app.email.from."
+    }
+  ] }

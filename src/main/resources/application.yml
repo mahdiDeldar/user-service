@@ -1,0 +1,84 @@
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shervin
+    username: postgres
+  jpa:
+    properties:
+      hibernate:
+        default_schema: user_service
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    schemas: ${spring.jpa.properties.hibernate.default_schema}
+    baseline-on-migrate: true
+  messages:
+    basename: messages/messages
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 1044541954287-aul428tu6vss509eofdab3k12g2k64q5.apps.googleusercontent.com
+            clientSecret: ySSmoFQrtVzYHIPK0XWlBYr2
+            redirectUri: "${app.host}/oauth2/callback/google"
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 201197168875704
+            clientSecret: 458ef624afb566c9f5a345439dd94cd8
+            redirectUri: "${app.host}/oauth2/callback/facebook" # Note that facebook now mandates the use of https redirect URIs, so make sure your app supports https in production
+            scope:
+              - email
+              - public_profile
+          github:
+            clientId: 4bbda339bf3d65e7ea14
+#            clientSecret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
+            clientSecret: db6b072bd279393319b6ae24f7c6e0de6102691f
+            redirectUri: "${app.host}/oauth2/callback/github"
+            scope:
+              - user:email
+              - read:user
+#        provider:
+#          facebook:
+#            authorizationUri: https://www.facebook.com/dialog/oauth
+#            tokenUri: https://graph.facebook.com/oauth/access_token
+#            userInfoUri: https://graph.facebook.com/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+
+app:
+  host: http://localhost:8080/user-service
+  email:
+    address: Mobileappkeys
+    from: Mobileappkeys@gmail.com
+  security:
+    tokenSecret: NLS0wmgVxJI3g3LrRxVSfEkyAVO5u5
+    accessTokenExpirationMilliseconds: 86400000 # 24 * 60 * 60 * 1000L
+    refreshTokenExpirationMilliseconds: 7776000000 # 90 * 24 * 60 * 60 * 1000L
+    authorizedRedirectUris:
+      - ${app.host}/register/oauth2/redirect
+      - keys://oauth2/redirect
+  sms:
+    clientId: yE2LiHfVfdczQvWS
+    authHost: https://auth.sms.to
+    apiHost: https://api.sms.to
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#logging:
+#  level:
+#    com: debug
+#    org: debug
+server:
+  forward-headers-strategy: framework
+  error:
+    include-stacktrace: never
+    include-exception: false
