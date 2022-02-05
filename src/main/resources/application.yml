@@ -3,7 +3,7 @@ spring:
     name: user-service
   datasource:
     url: jdbc:postgresql://localhost:5432/shervin
-    username: postgres
+    username: shervin
   jpa:
     properties:
       hibernate:
