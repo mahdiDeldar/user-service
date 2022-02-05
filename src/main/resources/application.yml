@@ -67,6 +67,7 @@ app:
     authHost: https://auth.sms.to
     apiHost: https://api.sms.to
 
+    
 eureka:
   instance:
     prefer-ip-address: true
