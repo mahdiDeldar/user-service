@@ -10,6 +10,8 @@ import com.chubock.userservice.repository.LocalUserRepository;
 import com.chubock.userservice.repository.OAuthUserRepository;
 import com.chubock.userservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +26,7 @@ public class TerminationService {
     private ChatApiFeignClient chatApiFeignClient;
 
     @Transactional
-    public void userTermination(String userId) {
+    public ResponseEntity<Boolean> userTermination(String userId) {
         User user = userRepository.findById(userId).get();
         propertyApiFeignClient.deleteProperty(userId);
         chatApiFeignClient.deleteChat(userId);
@@ -35,5 +37,6 @@ public class TerminationService {
             oAuthUserRepository.delete(oAuthUserRepository.findById(userId).get());
         }
         userRepository.delete(user);
+        return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
 }

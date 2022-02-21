@@ -2,7 +2,7 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/shervin
+    url: jdbc:postgresql://test.elegant-designs.net:5432/shervin
     username: shervin
   jpa:
     properties:
@@ -44,6 +44,10 @@ spring:
             scope:
               - user:email
               - read:user
+#  profiles:
+#    include: 'develop'
+
+
 #        provider:
 #          facebook:
 #            authorizationUri: https://www.facebook.com/dialog/oauth

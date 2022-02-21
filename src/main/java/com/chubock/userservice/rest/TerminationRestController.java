@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class TerminationRestController {
 
     @GetMapping()
     @Operation(summary = "Try to delete user info after deleting user activities")
-    public void UserTermination(Authentication authentication) {
-        terminationService.userTermination(new UserModel(authentication.getName()).getId());
+    public ResponseEntity<Boolean> UserTermination(Authentication authentication) {
+        return terminationService.userTermination(new UserModel(authentication.getName()).getId());
     }
 }

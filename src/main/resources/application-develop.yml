@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shervin
+    username: postgres
+    password: postgres
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+app:
+  sms:
+    clientSecret: wjpza8iXSTZHBvvf5p7nC2GQlKEC0oIJ
+  email:
+    password: Asd123!@
+server:
+  port: 8082
