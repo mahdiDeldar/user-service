@@ -26,7 +26,7 @@ public class TerminationService {
     private ChatApiFeignClient chatApiFeignClient;
 
     @Transactional
-    public ResponseEntity<Boolean> userTermination(String userId) {
+    public void userTermination(String userId) {
         User user = userRepository.findById(userId).get();
         propertyApiFeignClient.deleteProperty(userId);
         chatApiFeignClient.deleteChat(userId);
@@ -37,6 +37,5 @@ public class TerminationService {
             oAuthUserRepository.delete(oAuthUserRepository.findById(userId).get());
         }
         userRepository.delete(user);
-        return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
 }

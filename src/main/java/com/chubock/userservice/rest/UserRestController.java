@@ -31,10 +31,8 @@ public class UserRestController {
     @PutMapping("me")
     @Operation(summary = "Update user details")
     public UserModel updateProfile(Authentication authentication, @RequestBody UserModel model) {
-
         model.setId(authentication.getName());
         return userService.update(model);
-
     }
 
 }

@@ -24,7 +24,7 @@ public class TerminationRestController {
 
     @GetMapping()
     @Operation(summary = "Try to delete user info after deleting user activities")
-    public ResponseEntity<Boolean> UserTermination(Authentication authentication) {
-        return terminationService.userTermination(new UserModel(authentication.getName()).getId());
+    public void UserTermination(Authentication authentication) {
+        terminationService.userTermination(new UserModel(authentication.getName()).getId());
     }
 }
