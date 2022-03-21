@@ -4,6 +4,8 @@ spring:
   datasource:
     url: jdbc:postgresql://test.elegant-designs.net:5432/shervin
     username: shervin
+  jmx:
+    enabled: true
   jpa:
     properties:
       hibernate:

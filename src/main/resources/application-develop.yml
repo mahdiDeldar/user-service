@@ -1,15 +1,15 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/shervin
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://test.elegant-designs.net:5432/shervin
+    username: shervin
+    password: shervin
 
 eureka:
   instance:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://test.elegant-designs.net:8761/eureka
 
 app:
   sms:
