@@ -7,6 +7,7 @@ COPY ${DEPENDENCY}/META-INF /app/META-INF
 COPY ${DEPENDENCY}/BOOT-INF/classes /app
 ENTRYPOINT ["java","-cp","app:app/lib/*","com.chubock.userservice.UserServiceApplication"]
 
+USER root:root
 RUN apt-get install -y wget
 #  && rm -rf /var/lib/apt/lists/*
 
