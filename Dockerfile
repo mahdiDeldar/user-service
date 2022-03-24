@@ -8,8 +8,8 @@ COPY ${DEPENDENCY}/BOOT-INF/classes /app
 ENTRYPOINT ["java","-cp","app:app/lib/*","com.chubock.userservice.UserServiceApplication"]
 
 RUN  apt-get update \
-  && apt-get install -y wget \
-  && rm -rf /var/lib/apt/lists/*
+  && apt-get install -y wget
+#  && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_linux_13_0.tar.gz -P /tmp/ &&\
  tar -xzf /tmp/jprofiler_linux_13_0.tar.gz -C /usr/local &&\
