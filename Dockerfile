@@ -5,32 +5,15 @@ RUN chmod +x ./gradlew
 RUN ./gradlew clean bootJar
 RUN mkdir -p build/dependency && (cd build/dependency; jar -xf ../libs/*.jar)
 
-
 FROM openjdk:slim-buster
 RUN apt update
 RUN apt install -y wget
 RUN apt install -y net-tools
-RUN wget https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_linux_13_0_1.tar.gz -P /tmp/ && \
-  tar -xzf /tmp/jprofiler_linux_13_0_1.tar.gz -C /usr/local &&\
-  rm /tmp/jprofiler_linux_13_0_1.tar.gz
+
 RUN adduser spring
 USER spring:spring
 ARG DEPENDENCY=/src/build/dependency
 COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=builder ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes /app
-
-# ENTRYPOINT ["java","-cp","app:app/lib/*","com.chubock.userservice.UserServiceApplication", "-agentpath:/usr/local/jprofiler13.0.1/bin/linux-x64/libjprofilerti.so=port=8849"]
 ENTRYPOINT ["java","-cp","app:app/lib/*","com.chubock.userservice.UserServiceApplication"]
-
-USER root:root
-RUN  apt-get update \
-  && apt-get install -y wget \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN wget https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_linux_13_0.tar.gz -P /tmp/ &&\
- tar -xzf /tmp/jprofiler_linux_13_0.tar.gz -C /usr/local &&\
- rm /tmp/jprofiler_linux_13_0.tar.gz
-
-ENV JPAGENT_PATH="-agentpath:/usr/local/jprofiler13.0/bin/linux-x64/libjprofilerti.so=nowait"
-EXPOSE 8849
