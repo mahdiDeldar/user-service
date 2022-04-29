@@ -2,8 +2,8 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:postgresql://test.elegant-designs.net:5432/shervin
-    username: shervin
+    url: jdbc:postgresql://db.privatenetwork:5432/housemate
+    username: housemate
   jpa:
     properties:
       hibernate:
@@ -77,7 +77,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://test.elegant-designs.net:8761/eureka
+      defaultZone: http://discovery:8761/eureka
 #logging:
 #  level:
 #    com: debug
