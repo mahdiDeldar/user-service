@@ -23,6 +23,7 @@ public class LocalUserModel extends UserModel {
                 .email(user.getEmail())
                 .phone(user.getPhone())
                 .emailVerified(user.isEmailVerified())
+                .blockedUsersId(user.getBlockedUsersId())
                 .build();
 
     }
