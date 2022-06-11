@@ -35,7 +35,7 @@ public class UserRestController {
         return userService.update(model);
     }
 
-    @PatchMapping("block")
+    @PutMapping("block")
     @Operation(summary = "block user")
     public UserModel blockUser(Authentication authentication, @RequestParam(name = "blockedUserId") String blockedUserId) {
         return userService.blockUser(authentication, blockedUserId);
