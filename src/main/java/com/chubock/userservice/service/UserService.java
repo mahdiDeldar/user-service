@@ -97,11 +97,10 @@ public class UserService implements UserDetailsService {
 
     public UserModel blockUser(Authentication authentication, String blockedUserId) {
         User user = userRepository.findById(authentication.getName()).orElseThrow();
-        if(user.getBlockedUsersId() == null)
-            user.setBlockedUsersId(new ArrayList<>());
-
-        user.getBlockedUsersId().add(blockedUserId);
-        user = userRepository.save(user);
+        if(!user.getBlockedUsersId().contains(blockedUserId)) {
+            user.getBlockedUsersId().add(blockedUserId);
+            user = userRepository.save(user);
+        }
         return UserModel.of(user);
     }
 }

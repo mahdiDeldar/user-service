@@ -3,6 +3,16 @@ spring:
     url: jdbc:postgresql://test.elegant-designs.net:5432/shervin
     username: shervin
     password: shervin
+  jpa:
+    properties:
+      hibernate:
+        default_schema: user_service
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    flyway:
+      schemas: ${spring.jpa.properties.hibernate.default_schema}
+      baseline-on-migrate: true
 
 eureka:
   instance:
