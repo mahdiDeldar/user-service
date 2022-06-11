@@ -7,11 +7,14 @@ import com.chubock.userservice.model.LocalUserModel;
 import com.chubock.userservice.model.OAuthUserModel;
 import com.chubock.userservice.model.UserModel;
 import com.chubock.userservice.repository.UserRepository;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -92,4 +95,13 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
+    public UserModel blockUser(Authentication authentication, String blockedUserId) {
+        User user = userRepository.findById(authentication.getName()).orElseThrow();
+        if(user.getBlockedUsersId() == null)
+            user.setBlockedUsersId(new ArrayList<>());
+
+        user.getBlockedUsersId().add(blockedUserId);
+        user = userRepository.save(user);
+        return UserModel.of(user);
+    }
 }

@@ -1,5 +1,6 @@
 package com.chubock.userservice.entity;
 
+import com.chubock.userservice.model.ListToStringConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -33,6 +35,9 @@ public class User implements UserDetails {
     private boolean enabled = true;
 
     private String imageUrl;
+
+    @Convert(converter = ListToStringConverter.class)
+    private List<String> blockedUsersId;
 
     @Override
     @Transient

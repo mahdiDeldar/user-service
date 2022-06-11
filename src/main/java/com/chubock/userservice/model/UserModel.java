@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.Convert;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +23,7 @@ public class UserModel {
     private String username;
     private String fullName;
     private String imageUrl;
+    private List<String> blockedUsersId;
 
     public static UserModel of(User user) {
         return builder()
@@ -27,6 +31,7 @@ public class UserModel {
                 .username(user.getNickname())
                 .fullName(user.getFullName())
                 .imageUrl(user.getImageUrl())
+                .blockedUsersId(user.getBlockedUsersId())
                 .build();
     }
 
